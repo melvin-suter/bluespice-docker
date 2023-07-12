@@ -60,7 +60,7 @@ RUN wget https://bluespice.com/filebase/bluespice-free/ -O /opt/setup.zip \
 RUN mkdir -p /opt/bluespice_original \
     && mv /opt/bluespice/extensions /opt/bluespice_original/ \
     && mv /opt/bluespice/images /opt/bluespice_original/ \
-    && mv /opt/bluespice/settings /opt/bluespice_original/ \
+    && mv /opt/bluespice/settings.d /opt/bluespice_original/ \
     && ln -s /images /opt/bluespice/images \
     && ln -s /settings/settings.d /opt/bluespice/settings.d \
     && ln -s /settings/LocalSettings.php /opt/bluespice/LocalSettings.php
