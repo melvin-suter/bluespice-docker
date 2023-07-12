@@ -14,12 +14,18 @@ RUN apt-get update && apt-get install -y \
 		libfreetype-dev \
 		libjpeg62-turbo-dev \
 		libpng-dev \ 
-        libcurl-dev
-        
+        curl \
+        libcurl3 \
+        libcurl3-dev \
+        mysql-client \
+        libldap2-dev \
+        libtidy-dev
+
 RUN docker-php-ext-install curl \
     && docker-php-ext-install gd \
     && docker-php-ext-install intl \
     && docker-php-ext-install json \
+    && docker-php-ext-install ldap \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install mysql \
     && docker-php-ext-install opcache \
