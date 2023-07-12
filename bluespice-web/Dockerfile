@@ -11,18 +11,39 @@ RUN sed -ri -e 's!80!${APACHE_HTTP_PORT}!g' /etc/apache2/sites-available/*.conf 
     && sed -ri -e 's!443!${APACHE_HTTPS_PORT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 RUN apt-get update && apt-get install -y \
-		libfreetype-dev \
-		libjpeg62-turbo-dev \
-		libpng-dev \ 
-        curl \
-        libcurl3 \
-        libcurl3-dev \
-        mysql-client \
-        libldap2-dev \
-        libtidy-dev
+    libpspell-dev libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
+    aspell-en \
+    aspell-de  \
+    apt-utils \
+    libmcrypt-dev \
+    libicu-dev \
+    php-apc     \
+    libxml2-dev  \
+    libldb-dev \
+    libldap2-dev  \
+    libxml2-dev \
+    libssl-dev \
+    libxslt-dev \
+    libpq-dev \
+    postgresql-client \
+    mysql-client  \
+    libsqlite3-dev \
+    libsqlite3-0 \
+    libc-client-dev \
+    libkrb5-dev \
+    curl \
+    libcurl3 \
+    libcurl3-dev \
+    firebird-dev \
+    libtidy-dev \
+    libsnmp-dev \
+    librecode0 \
+    librecode-dev
+
+RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
 
 RUN docker-php-ext-install curl \
-    && docker-php-ext-install gd \
+    && docker-php-ext-install -j$(nproc) gd     \
     && docker-php-ext-install intl \
     && docker-php-ext-install json \
     && docker-php-ext-install ldap \
