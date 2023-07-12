@@ -73,7 +73,7 @@ RUN mkdir -p /opt/bluespice_original \
 
 COPY scripts/entrypoint.sh /entrypoint.sh
 RUN chown 1000:1000 /entrypoint.sh && chmod +x /entrypoint.sh
-RUN chown www-data:www-data -R /opt/bitwarden
+RUN chown www-data:www-data -R /opt/bluespice
 RUN chown www-data:www-data -R /opt/bluespice_original
 
 WORKDIR ${APACHE_DOCUMENT_ROOT}
