@@ -1,4 +1,4 @@
-FROM php:8.4-apache
+FROM php:8.3-apache
 
 ENV APACHE_DOCUMENT_ROOT /opt/bluespice
 ENV APACHE_HTTP_PORT 3000
