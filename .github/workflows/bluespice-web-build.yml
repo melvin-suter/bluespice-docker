@@ -1,4 +1,4 @@
-name: latest-frontend-build
+name: latest-build-bluespice-web
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
       - bluespice-web/**
 
 jobs:
-  build-frontend:
+  build-bluespice-web:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -31,5 +31,5 @@ jobs:
         file: ./bluespice-web/Dockerfile
         push: true
         tags: | 
-          ${{ secrets.DOCKER_HUB_USERNAME }}/ynventory.frontend:latest
-          ${{ secrets.DOCKER_HUB_USERNAME }}/ynventory.frontend:$GITHUB_RUN_ID
+          ${{ secrets.DOCKER_HUB_USERNAME }}/bluespice-web:latest
+          ${{ secrets.DOCKER_HUB_USERNAME }}/bluespice-web:${{ GITHUB_RUN_ID }}
