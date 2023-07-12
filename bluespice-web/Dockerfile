@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-ENV APACHE_DOCUMENT_ROOT /opt/bluespice
+ENV APACHE_DOCUMENT_ROOT /var/www/html
 ENV APACHE_HTTP_PORT 3000
 ENV APACHE_HTTPS_PORT 3001
 ENV APACHE_RUN_DIR /var/run/apache2
@@ -59,22 +59,25 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-install -j$(nproc) gd 
 RUN docker-php-ext-install -j$(nproc) intl 
 
+RUN test -d /var/www/html && rm -rf /var/www/html
+
 RUN wget https://bluespice.com/filebase/bluespice-free/ -O /opt/setup.zip \
     && cd /opt && unzip setup.zip \
-    && rm -f setup.zip
+    && rm -f setup.zip \
+    && mv /opt/bluespice /var/www/html
     
-RUN mkdir -p /opt/bluespice_original \
-    && mv /opt/bluespice/extensions /opt/bluespice_original/ \
-    && mv /opt/bluespice/images /opt/bluespice_original/ \
-    && mv /opt/bluespice/settings.d /opt/bluespice_original/ \
-    && ln -s /images /opt/bluespice/images \
-    && ln -s /settings/settings.d /opt/bluespice/settings.d \
-    && ln -s /settings/LocalSettings.php /opt/bluespice/LocalSettings.php
+RUN mkdir -p /var/www/html_original \
+    && mv /var/www/html/extensions /var/www/html_original/ \
+    && mv /var/www/html/images /var/www/html_original/ \
+    && mv /var/www/html/settings.d /var/www/html_original/ \
+    && ln -s /images /var/www/html/images \
+    && ln -s /settings/settings.d /var/www/html/settings.d \
+    && ln -s /settings/LocalSettings.php /var/www/html/LocalSettings.php
 
 COPY scripts/entrypoint.sh /entrypoint.sh
 RUN chown 1000:1000 /entrypoint.sh && chmod +x /entrypoint.sh
-RUN chown www-data:www-data -R /opt/bluespice
-RUN chown www-data:www-data -R /opt/bluespice_original
+RUN chown www-data:www-data -R /var/www/html
+RUN chown www-data:www-data -R /var/www/html_original
 
 WORKDIR ${APACHE_DOCUMENT_ROOT}
 
