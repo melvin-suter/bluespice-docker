@@ -54,7 +54,7 @@ RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install -j$(nproc) intl 
 
 RUN wget https://bluespice.com/filebase/bluespice-free/ -o /opt/setup.zip \
-    && unzip setup.zip \
+    && cd /opt && unzip setup.zip \
     && rm -f setup.zip
     
 RUN mkdir -p /opt/bluespice_original \
