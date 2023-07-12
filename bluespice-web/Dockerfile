@@ -10,6 +10,12 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 RUN sed -ri -e 's!80!${APACHE_HTTP_PORT}!g' /etc/apache2/sites-available/*.conf \
     && sed -ri -e 's!443!${APACHE_HTTPS_PORT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
+RUN apt-get update && apt-get install -y \
+		libfreetype-dev \
+		libjpeg62-turbo-dev \
+		libpng-dev \ 
+        libcurl-dev
+        
 RUN docker-php-ext-install curl \
     && docker-php-ext-install gd \
     && docker-php-ext-install intl \
