@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: itwiki-web
+  labels:
+    stack: bluespice
+    app: web
+    instance: itwiki
+spec:
+  selector:
+    matchLabels:
+      stack: bluespice
+      app: bluespice
+      instance: itwiki
+  template:
+    metadata:
+      labels:
+        stack: bluespice
+        app: bluespice
+        instance: itwiki
+    spec:
+      volumes:
+      - name: pvc-itwiki-bluespice-data
+        persistentVolumeClaim:
+          claimName: pvc-itwiki-bluespice-data
+      containers:
+        - imagePullPolicy: Always
+          name: container-0
+          image: bluespice/bluespice-free
+          envFrom:
+          - configMapRef:
+              name: itwiki-bluespice-config
+          ports:
+          - name: http
+            protocol: TCP
+            containerPort: 80
+          volumeMounts:
+          - mountPath: /images
+            name: pvc-itwiki-bluespice-data
+          - mountPath: /extensions
+            name: pvc-itwiki-bluespice-data
+          - mountPath: /settings/settings.d
+            name: pvc-itwiki-bluespice-data
+      restartPolicy: Always
+  replicas: 1

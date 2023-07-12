@@ -1,0 +1,35 @@
+name: latest-frontend-build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "master"
+    paths:
+      - bluespice-web/**
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        context: ./bluespice-web
+        file: ./bluespice-web/Dockerfile
+        push: true
+        tags: | 
+          ${{ secrets.DOCKER_HUB_USERNAME }}/ynventory.frontend:latest
+          ${{ secrets.DOCKER_HUB_USERNAME }}/ynventory.frontend:$GITHUB_RUN_ID
