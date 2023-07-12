@@ -3,6 +3,12 @@ FROM php:8.2-apache
 ENV APACHE_DOCUMENT_ROOT /opt/bluespice
 ENV APACHE_HTTP_PORT 3000
 ENV APACHE_HTTPS_PORT 3001
+ENV APACHE_RUN_DIR /var/run/apache2
+ENV APACHE_PID_FILE $APACHE_RUN_DIR/apache2.pid
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
     && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
@@ -67,6 +73,8 @@ RUN mkdir -p /opt/bluespice_original \
 
 COPY scripts/entrypoint.sh /entrypoint.sh
 RUN chown 1000:1000 /entrypoint.sh && chmod +x /entrypoint.sh
+RUN chown www-data:www-data -R /opt/bitwarden
+RUN chown www-data:www-data -R /opt/bluespice_original
 
 WORKDIR ${APACHE_DOCUMENT_ROOT}
 
