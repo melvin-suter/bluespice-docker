@@ -38,15 +38,15 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
 
-RUN docker-php-ext-install ldap \
-    && docker-php-ext-install mbstring \
-    && docker-php-ext-install mysql \
-    && docker-php-ext-install opcache \
-    && docker-php-ext-install tidy \
-    && docker-php-ext-install xml \
-    && docker-php-ext-install zip \
-    && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install -j$(nproc) intl 
+RUN docker-php-ext-install ldap 
+RUN docker-php-ext-install mbstring 
+RUN docker-php-ext-install mysql 
+RUN docker-php-ext-install opcache 
+RUN docker-php-ext-install tidy 
+RUN docker-php-ext-install xml 
+RUN docker-php-ext-install zip 
+RUN docker-php-ext-install -j$(nproc) gd 
+RUN docker-php-ext-install -j$(nproc) intl 
 
 RUN wget https://bluespice.com/filebase/bluespice-free/ -o /opt/setup.zip \
     && unzip setup.zip \
