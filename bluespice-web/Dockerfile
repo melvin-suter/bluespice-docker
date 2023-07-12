@@ -34,7 +34,8 @@ RUN apt-get update && apt-get install -y \
     libtidy-dev \
     libsnmp-dev \
     librecode0 \
-    librecode-dev
+    librecode-dev \
+    libonig-dev
 
 RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
 
