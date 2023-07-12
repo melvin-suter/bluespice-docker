@@ -8,3 +8,4 @@ test -d /opt/bluespice/extensions || mkdir /opt/bluespice/extensions
 /bin/mv -f /opt/bluespice_original/extensions/* /opt/bluespice/extensions
 
 docker-php-entrypoint
+apache2-foreground

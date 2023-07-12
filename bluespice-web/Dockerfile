@@ -68,4 +68,8 @@ RUN mkdir -p /opt/bluespice_original \
 COPY scripts/entrypoint.sh /entrypoint.sh
 RUN chown 1000:1000 /entrypoint.sh && chmod +x /entrypoint.sh
 
+WORKDIR ${APACHE_DOCUMENT_ROOT}
+
+EXPOSE ${APACHE_HTTP_PORT}
+
 ENTRYPOINT ["/entrypoint.sh"]
