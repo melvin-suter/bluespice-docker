@@ -41,7 +41,8 @@ RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
 
 RUN docker-php-ext-install ldap 
 RUN docker-php-ext-install mbstring 
-RUN docker-php-ext-install mysql 
+RUN docker-php-ext-install pdo pdo_mysql 
+RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install opcache 
 RUN docker-php-ext-install tidy 
 RUN docker-php-ext-install xml 
