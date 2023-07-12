@@ -39,7 +39,6 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
 
 RUN docker-php-ext-install curl \
-    && docker-php-ext-install json \
     && docker-php-ext-install ldap \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install mysql \
