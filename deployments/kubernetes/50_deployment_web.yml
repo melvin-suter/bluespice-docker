@@ -26,14 +26,11 @@ spec:
       containers:
         - imagePullPolicy: Always
           name: container-0
-          image: bluespice/bluespice-free
-          envFrom:
-          - configMapRef:
-              name: itwiki-bluespice-config
+          image: suterdev/bluespice-web:tagname
           ports:
           - name: http
             protocol: TCP
-            containerPort: 80
+            containerPort: 3000
           volumeMounts:
           - mountPath: /images
             name: pvc-itwiki-bluespice-data
