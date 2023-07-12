@@ -32,4 +32,4 @@ jobs:
         push: true
         tags: | 
           ${{ secrets.DOCKER_HUB_USERNAME }}/bluespice-web:latest
-          ${{ secrets.DOCKER_HUB_USERNAME }}/bluespice-web:${{ GITHUB_RUN_ID }}
+          ${{ secrets.DOCKER_HUB_USERNAME }}/bluespice-web:${{ github.run_id }}
