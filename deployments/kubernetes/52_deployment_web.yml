@@ -20,23 +20,32 @@ spec:
         instance: itwiki
     spec:
       volumes:
-      - name: pvc-itwiki-bluespice-data
+      - name: pvc-itwiki-bluespice-images
         persistentVolumeClaim:
-          claimName: pvc-itwiki-bluespice-data
+          claimName: pvc-itwiki-bluespice-images
+      - name: pvc-itwiki-bluespice-extensions
+        persistentVolumeClaim:
+          claimName: pvc-itwiki-bluespice-extensions
+      - name: pvc-itwiki-bluespice-settings
+        persistentVolumeClaim:
+          claimName: pvc-itwiki-bluespice-settings
       containers:
         - imagePullPolicy: Always
           name: container-0
           image: suterdev/bluespice-web:tagname
+          envFrom:
+          - configMapRef:
+              name: itwiki-bluespice-config
           ports:
           - name: http
             protocol: TCP
             containerPort: 3000
           volumeMounts:
           - mountPath: /images
-            name: pvc-itwiki-bluespice-data
+            name: pvc-itwiki-bluespice-images
           - mountPath: /extensions
-            name: pvc-itwiki-bluespice-data
+            name: pvc-itwiki-bluespice-extensions
           - mountPath: /settings/settings.d
-            name: pvc-itwiki-bluespice-data
+            name: pvc-itwiki-bluespice-settings
       restartPolicy: Always
   replicas: 1

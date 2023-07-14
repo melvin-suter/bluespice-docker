@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: itwiki-bluespice-config
+data:
+  MYSQL_USER: "bluespice"
+  MYSQL_PASSWORD: "ChangeMe4Security"
+  MYSQL_DATABASE: "bluespice"
+  MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+  MARIADB_AUTO_UPGRADE: "yes"
