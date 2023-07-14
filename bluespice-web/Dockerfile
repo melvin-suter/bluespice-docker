@@ -60,6 +60,7 @@ RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install -j$(nproc) intl 
 
 RUN test -d /var/www/html && rm -rf /var/www/html
+RUN test -d /var/www/html_original || rm -rf /var/www/html_original
 
 RUN wget https://bluespice.com/filebase/bluespice-free/ -O /opt/setup.zip \
     && cd /opt && unzip setup.zip \
