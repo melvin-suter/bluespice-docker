@@ -66,11 +66,11 @@ RUN wget https://bluespice.com/filebase/bluespice-free/ -O /opt/setup.zip \
     && rm -f setup.zip \
     && mv /opt/bluespice /var/www/html
     
-RUN mkdir -p /var/www/html_original \
-    && mv /var/www/html/extensions /var/www/html_original/ \
+RUN mkdir -p /var/www/html_original
+RUN mv /var/www/html/extensions /var/www/html_original/ \
     && mv /var/www/html/images /var/www/html_original/ \
-    && mv /var/www/html/settings.d /var/www/html_original/ \
-    && ln -s /images /var/www/html/images \
+    && mv /var/www/html/settings.d /var/www/html_original/
+RUN ln -s /images /var/www/html/images \
     && ln -s /settings/settings.d /var/www/html/settings.d \
     && ln -s /settings/LocalSettings.php /var/www/html/LocalSettings.php
 
