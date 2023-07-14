@@ -26,7 +26,7 @@ spec:
       containers:
         - imagePullPolicy: Always
           name: container-0
-          image: suterdev/bluespice-web:tagname
+          image: mariadb:11
           envFrom:
           - configMapRef:
               name: itwiki-bluespice-config

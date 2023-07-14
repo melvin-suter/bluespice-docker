@@ -76,8 +76,10 @@ RUN ln -s /images /var/www/html/images \
     && ln -s /settings/settings.d /var/www/html/settings.d \
     && ln -s /settings/LocalSettings.php /var/www/html/LocalSettings.php
 
-COPY scripts/entrypoint.sh /entrypoint.sh
-RUN chown 1000:1000 /entrypoint.sh && chmod +x /entrypoint.sh
+RUN mkdir -p /opt/bluespice
+COPY scripts/entrypoint.sh /opt/bluespice/entrypoint.sh
+COPY scripts/LocalSettings.php /opt/bluespice/LocalSettings.php
+RUN chown 1000:1000 /opt/bluespice/entrypoint.sh && chmod +x /opt/bluespice/entrypoint.sh
 RUN chown www-data:www-data -R /var/www/html
 RUN chown www-data:www-data -R /var/www/html_original
 
@@ -85,4 +87,4 @@ WORKDIR ${APACHE_DOCUMENT_ROOT}
 
 EXPOSE ${APACHE_HTTP_PORT}
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/opt/bluespice/entrypoint.sh"]

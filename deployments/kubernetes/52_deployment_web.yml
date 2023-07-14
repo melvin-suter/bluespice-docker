@@ -32,7 +32,7 @@ spec:
       containers:
         - imagePullPolicy: Always
           name: container-0
-          image: suterdev/bluespice-web:tagname
+          image: suterdev/bluespice-web:latest
           envFrom:
           - configMapRef:
               name: itwiki-bluespice-config

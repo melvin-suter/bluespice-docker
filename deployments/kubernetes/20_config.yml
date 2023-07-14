@@ -3,8 +3,14 @@ kind: ConfigMap
 metadata:
   name: itwiki-bluespice-config
 data:
+  MYSQL_HOST: "itwiki-db"
   MYSQL_USER: "bluespice"
   MYSQL_PASSWORD: "ChangeMe4Security"
   MYSQL_DATABASE: "bluespice"
   MYSQL_RANDOM_ROOT_PASSWORD: "yes"
   MARIADB_AUTO_UPGRADE: "yes"
+
+  BLUESPICE_SITE_NAME: "IT-Wiki"
+  BLUESPICE_URL: "https://example.org"
+  BLUESPICE_TIMEZONE: "UTC"
+  BLUESPICE_LANGUAGE: "en"
