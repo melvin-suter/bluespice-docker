@@ -17,6 +17,7 @@ RUN sed -ri -e 's!80!${APACHE_HTTP_PORT}!g' /etc/apache2/sites-available/*.conf 
     && sed -ri -e 's!443!${APACHE_HTTPS_PORT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 RUN apt-get update && apt-get install -y \
+    bsdmainutils \
     libpspell-dev libfreetype6-dev libjpeg62-turbo-dev  \
     aspell-en \
     aspell-de  \
