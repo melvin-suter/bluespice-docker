@@ -10,13 +10,13 @@ spec:
   selector:
     matchLabels:
       stack: bluespice
-      app: bluespice
+      app: web
       instance: itwiki
   template:
     metadata:
       labels:
         stack: bluespice
-        app: bluespice
+        app: web
         instance: itwiki
     spec:
       volumes:
@@ -39,7 +39,7 @@ spec:
           ports:
           - name: http
             protocol: TCP
-            containerPort: 3000
+            containerPort: 80
           volumeMounts:
           - mountPath: /images
             name: pvc-itwiki-bluespice-images

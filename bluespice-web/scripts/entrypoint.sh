@@ -15,7 +15,7 @@ test -d /var/www/html/extensions || mkdir /var/www/html/extensions
 /bin/mv -f /var/www/html_original/extensions/* /var/www/html/extensions
 
 # Create LocalSettings.php if needed
-test -f /settings/LocalSettings.php || cp /var/www/html_original/LocalSettings.php /settings/LocalSettings.php
+test -f /settings/LocalSettings.php || cp /opt/bluespice/LocalSettings.php /settings/LocalSettings.php
 
 # Replace Vars
 sed -i "s;##BLUESPICE_SITE_NAME##;$BLUESPICE_SITE_NAME;" /var/www/html/LocalSettings.php

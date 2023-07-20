@@ -10,13 +10,13 @@ spec:
   selector:
     matchLabels:
       stack: bluespice
-      app: bluespice
+      app: database
       instance: itwiki
   template:
     metadata:
       labels:
         stack: bluespice
-        app: bluespice
+        app: database
         instance: itwiki
     spec:
       volumes:

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: itwiki-db
+spec:
+  selector:
+      stack: bluespice
+      app: database
+      instance: itwiki
+  ports:
+    - name: db
+      port: 3306
+      protocol: TCP
+      targetPort: db
+  sessionAffinity: None
+  type: ClusterIP
