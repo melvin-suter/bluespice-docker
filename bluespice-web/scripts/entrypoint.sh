@@ -17,7 +17,7 @@ test -d /var/www/html/extensions || mkdir /var/www/html/extensions
 
 # Run Installer if needed
 
-if [ -f /settings/LocalSettings.php ] ; then
+if [ ! -f /settings/LocalSettings.php ] ; then
     [ -n "$MARIADB_USER" ] && php maintenance/install.php --conf $LOCALSETTINGS_TARGET "$BLUESPICE_SITE_NAME" "$BLUESPICE_INITIAL_ADMIN_NAME" --pass "$BLUESPICE_INITIAL_ADMIN_PASSWORD" --dbname "$MARIADB_DATABASE" --dbpass "$MARIADB_PASSWORD" --dbserver "$MARIADB_HOST" --dbuser "$MARIADB_USER"
     [ -n "$MARIA_USER" ] && php maintenance/install.php --conf $LOCALSETTINGS_TARGET "$BLUESPICE_SITE_NAME" "$BLUESPICE_INITIAL_ADMIN_NAME" --pass "$BLUESPICE_INITIAL_ADMIN_PASSWORD" --dbname "$MARIA_DATABASE" --dbpass "$MARIA_PASSWORD" --dbserver "$MARIA_HOST" --dbuser "$MARIA_USER"
     [ -n "$MYSQL_USER" ] && php maintenance/install.php --conf $LOCALSETTINGS_TARGET "$BLUESPICE_SITE_NAME" "$BLUESPICE_INITIAL_ADMIN_NAME" --pass "$BLUESPICE_INITIAL_ADMIN_PASSWORD" --dbname "$MYSQL_DATABASE" --dbpass "$MYSQL_PASSWORD" --dbserver "$MYSQL_HOST" --dbuser "$MYSQL_USER"
