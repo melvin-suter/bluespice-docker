@@ -18,9 +18,9 @@ test -d /var/www/html/extensions || mkdir /var/www/html/extensions
 # Run Installer if needed
 
 if [ ! -f /settings/LocalSettings.php ] ; then
-    [ -n "$MARIADB_USER" ] && php maintenance/install.php --conf $LOCALSETTINGS_TARGET "$BLUESPICE_SITE_NAME" "$BLUESPICE_INITIAL_ADMIN_NAME" --pass "$BLUESPICE_INITIAL_ADMIN_PASSWORD" --dbname "$MARIADB_DATABASE" --dbpass "$MARIADB_PASSWORD" --dbserver "$MARIADB_HOST" --dbuser "$MARIADB_USER"
-    [ -n "$MARIA_USER" ] && php maintenance/install.php --conf $LOCALSETTINGS_TARGET "$BLUESPICE_SITE_NAME" "$BLUESPICE_INITIAL_ADMIN_NAME" --pass "$BLUESPICE_INITIAL_ADMIN_PASSWORD" --dbname "$MARIA_DATABASE" --dbpass "$MARIA_PASSWORD" --dbserver "$MARIA_HOST" --dbuser "$MARIA_USER"
-    [ -n "$MYSQL_USER" ] && php maintenance/install.php --conf $LOCALSETTINGS_TARGET "$BLUESPICE_SITE_NAME" "$BLUESPICE_INITIAL_ADMIN_NAME" --pass "$BLUESPICE_INITIAL_ADMIN_PASSWORD" --dbname "$MYSQL_DATABASE" --dbpass "$MYSQL_PASSWORD" --dbserver "$MYSQL_HOST" --dbuser "$MYSQL_USER"
+    # [ -n "$MARIADB_USER" ] && php maintenance/install.php --conf $LOCALSETTINGS_TARGET "$BLUESPICE_SITE_NAME" "$BLUESPICE_INITIAL_ADMIN_NAME" --pass "$BLUESPICE_INITIAL_ADMIN_PASSWORD" --dbname "$MARIADB_DATABASE" --dbpass "$MARIADB_PASSWORD" --dbserver "$MARIADB_HOST" --dbuser "$MARIADB_USER"
+    # [ -n "$MARIA_USER" ] && php maintenance/install.php --conf $LOCALSETTINGS_TARGET "$BLUESPICE_SITE_NAME" "$BLUESPICE_INITIAL_ADMIN_NAME" --pass "$BLUESPICE_INITIAL_ADMIN_PASSWORD" --dbname "$MARIA_DATABASE" --dbpass "$MARIA_PASSWORD" --dbserver "$MARIA_HOST" --dbuser "$MARIA_USER"
+    # [ -n "$MYSQL_USER" ] && php maintenance/install.php --conf $LOCALSETTINGS_TARGET "$BLUESPICE_SITE_NAME" "$BLUESPICE_INITIAL_ADMIN_NAME" --pass "$BLUESPICE_INITIAL_ADMIN_PASSWORD" --dbname "$MYSQL_DATABASE" --dbpass "$MYSQL_PASSWORD" --dbserver "$MYSQL_HOST" --dbuser "$MYSQL_USER"
 
     # Create LocalSettings.php
     /bin/cp -f /opt/bluespice/LocalSettings.php /settings/LocalSettings.php
@@ -44,7 +44,8 @@ fi
 [ -n "$MYSQL_DATABASE" ] && sed -i "s;##MYSQL_DATABASE##;$MYSQL_DATABASE;" $LOCALSETTINGS_TARGET
 [ -n "$BLUESPICE_TIMEZONE" ] && sed -i "s;##BLUESPICE_TIMEZONE##;$BLUESPICE_TIMEZONE;" $LOCALSETTINGS_TARGET
 [ -n "$BLUESPICE_LANGUAGE" ] && sed -i "s;##BLUESPICE_LANGUAGE##;$BLUESPICE_LANGUAGE;" $LOCALSETTINGS_TARGET
-[ -n "$SECRET_KEY" ] && sed -i "s;##SECRET_KEY##;$SECRET_KEY;" $LOCALSETTINGS_TARGET
+[ -n "$SECRET_KEY" ] && sed -i "s;##SECRET_KEY##;$SECRET_KEY;" $LOCALSETTINGS_TARGET 
+[ -n "$BLUESPICE_SKIN" ] && sed -i "s;##BLUESPICE_SKIN##;$BLUESPICE_SKIN;" $LOCALSETTINGS_TARGET || sed -i "s;##BLUESPICE_SKIN##;bluespicecalumma;" $LOCALSETTINGS_TARGET
 
 
 
