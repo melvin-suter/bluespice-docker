@@ -143,4 +143,6 @@ $bsgGroupRoles['*']['reader'] = false;
 # $wgDebugDumpSql  = true;
 # $wgShowExceptionDetails = true;
 # $wgShowDBErrorBacktrace = true;
+wfLoadSkin( '##BLUESPICE_SKIN##' );
+
 

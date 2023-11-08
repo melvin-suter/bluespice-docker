@@ -14,7 +14,7 @@ ENV BLUESPICE_SITE_NAME=Bluespice
 ENV BLUESPICE_URL=https://bluespice
 ENV BLUESPICE_TIMEZONE=Europe/Zurich
 ENV BLUESPICE_LANGUAGE=German
-ENV BLUESPICE_SKIN=bluespicecalumma
+ENV BLUESPICE_SKIN=BlueSpiceDiscovery
 
 
 
