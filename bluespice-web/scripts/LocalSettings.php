@@ -122,7 +122,7 @@ $wgDiff3 = "/usr/bin/diff3";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, e.g. 'vector' or 'monobook':
-$wgDefaultSkin = "##BLUESPICE_SKIN##";
+$wgDefaultSkin = "##BLUESPICE_SKIN_LOWER##";
 
 # End of automatically generated settings.
 # Add more configuration options below.
@@ -143,6 +143,6 @@ $bsgGroupRoles['*']['reader'] = false;
 # $wgDebugDumpSql  = true;
 # $wgShowExceptionDetails = true;
 # $wgShowDBErrorBacktrace = true;
-wfLoadSkin( '##BLUESPICE_SKIN_LOWER##' );
+wfLoadSkin( '##BLUESPICE_SKIN##' );
 
 

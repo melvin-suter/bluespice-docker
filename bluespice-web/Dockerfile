@@ -68,6 +68,8 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-install -j$(nproc) gd 
 RUN docker-php-ext-install -j$(nproc) intl 
 
+RUN echo "error_reporting = E_ALL & ~E_STRICT & ~E_DEPRECATED" > /usr/local/etc/php/conf.d/disable-deprecations.ini
+
 RUN rm -rf /var/www/html
 RUN mkdir -p /var/www/html_original
 
