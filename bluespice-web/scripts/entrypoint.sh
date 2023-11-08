@@ -7,13 +7,14 @@ LOCALSETTINGS_TARGET="/var/www/html/LocalSettings.php"
 test -d /images || mkdir -p /images
 test -d /settings || mkdir -p /settings/settings.d
 test -d /extensions || mkdir -p /extensions
+test -d /skins || mkdir -p /skins
 
 # Copy if not existing
 find /var/www/html_original/settings.d/  -maxdepth 1 -type d | tail -n+2 | sed "s;/var/www/html_original/;;" | while read line ; do   test -d /var/www/html/$line || cp -R /var/www/html_original/$line /var/www/html/$line; done
 
 # Copy all
-test -d /var/www/html/extensions || mkdir /var/www/html/extensions
 /bin/mv -f /var/www/html_original/extensions/* /var/www/html/extensions
+/bin/mv -f /var/www/html_original/skins/* /var/www/html/skins
 
 # Run Installer if needed
 

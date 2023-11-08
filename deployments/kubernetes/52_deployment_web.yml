@@ -20,15 +20,18 @@ spec:
         instance: itwiki
     spec:
       volumes:
-      - name: pvc-itwiki-bluespice-images
+      - name: pvc-itwiki-images
         persistentVolumeClaim:
-          claimName: pvc-itwiki-bluespice-images
-      - name: pvc-itwiki-bluespice-extensions
+          claimName: pvc-itwiki-images
+      - name: pvc-itwiki-extensions
         persistentVolumeClaim:
-          claimName: pvc-itwiki-bluespice-extensions
-      - name: pvc-itwiki-bluespice-settings
+          claimName: pvc-itwiki-extensions
+      - name: pvc-itwiki-settings
         persistentVolumeClaim:
-          claimName: pvc-itwiki-bluespice-settings
+          claimName: pvc-itwiki-settings
+      - name: pvc-itwiki-skins
+        persistentVolumeClaim:
+          claimName: pvc-itwiki-skins
       containers:
         - imagePullPolicy: Always
           name: container-0
@@ -42,10 +45,12 @@ spec:
             containerPort: 80
           volumeMounts:
           - mountPath: /images
-            name: pvc-itwiki-bluespice-images
+            name: pvc-itwiki-images
+          - mountPath: /skins
+            name: pvc-itwiki-skins
           - mountPath: /extensions
-            name: pvc-itwiki-bluespice-extensions
+            name: pvc-itwiki-extensions
           - mountPath: /settings/settings.d
-            name: pvc-itwiki-bluespice-settings
+            name: pvc-itwiki-settings
       restartPolicy: Always
   replicas: 1

@@ -81,15 +81,26 @@ RUN wget https://bluespice.com/filebase/bluespice-free/ -O /opt/setup.zip \
     
 RUN mv /var/www/html/extensions /var/www/html_original/ \
     && mv /var/www/html/images /var/www/html_original/ \
-    && mv /var/www/html/settings.d /var/www/html_original/
+    && mv /var/www/html/settings.d /var/www/html_original/ \
+    && mv /var/www/html/skins /var/www/html_original/
 
 RUN ln -s /images /var/www/html/images \
+    && ln -s /extensions /var/www/html/extensions \
+    && ln -s /skins /var/www/html/skins \
     && ln -s /settings/settings.d /var/www/html/settings.d \
     && ln -s /settings/LocalSettings.php /var/www/html/LocalSettings.php
 
+
+
 RUN mkdir -p /opt/bluespice
+
+
+
 COPY scripts/entrypoint.sh /opt/bluespice/entrypoint.sh
 COPY scripts/LocalSettings.php /opt/bluespice/LocalSettings.php
+
+
+
 RUN chown 1000:1000 /opt/bluespice/entrypoint.sh && chmod +x /opt/bluespice/entrypoint.sh
 RUN chown www-data:www-data -R /var/www/html
 RUN chown www-data:www-data -R /var/www/html_original
