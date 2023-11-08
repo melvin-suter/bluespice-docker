@@ -22,7 +22,7 @@ jobs:
       run: |
         IMAGE_VERSION=$(curl "https://bluespice.com/download/" 2>/dev/null | cat | grep -i "Current version: BlueSpice" | sed -r -e 's;^.*Current version: BlueSpice (.*)strong.*$;\1;' | sed 's;</;;')
         echo "::set-output name=IMAGE_VERSION::${IMAGE_VERSION}"     
-
+        echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
 
     - name: Login to Docker Hub
       uses: docker/login-action@v2
@@ -41,5 +41,5 @@ jobs:
         push: true
         tags: | 
           ${{ secrets.DOCKER_HUB_USERNAME }}/bluespice-web:latest
-          ${{ secrets.DOCKER_HUB_USERNAME }}/bluespice-web:${{ github.run_id }}
+          ${{ secrets.DOCKER_HUB_USERNAME }}/bluespice-web:${{ steps.version.outputs.IMAGE_VERSION }}-${{ github.run_id }}
           ${{ secrets.DOCKER_HUB_USERNAME }}/bluespice-web:${{ steps.version.outputs.IMAGE_VERSION }}
